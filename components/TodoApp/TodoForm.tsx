@@ -1,12 +1,30 @@
 'use client'
 
 import { useState } from 'react'
+import type { Todo } from './TaskManager'
 
-export default function TodoForm() {
+import { v4 as uuidv4 } from 'uuid'
+
+type TodoFormType = {
+  getTodoItem: (item: Todo) => void
+}
+
+export default function TodoForm({ getTodoItem }: TodoFormType) {
   const [todoItem, setTodoItem] = useState<string>('')
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
+    if (!todoItem) return
+
+    const todo = {
+      id: uuidv4(),
+      title: todoItem,
+      isComplete: false
+    }
+
+    getTodoItem(todo)
+    setTodoItem('')
   }
 
   return (
