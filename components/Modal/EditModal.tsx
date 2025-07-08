@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { Todo } from '../TodoApp/TaskManager'
 
 type EditModalType = {
@@ -9,6 +9,7 @@ type EditModalType = {
 
 export default function EditModal({ isModalOpen, onClose, editableTodo }: EditModalType) {
   const [inputText, setInputText] = useState('')
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
   }
