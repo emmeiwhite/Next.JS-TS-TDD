@@ -1,9 +1,15 @@
+import type { Todo } from '../TodoApp/TaskManager'
+
 type EditModalType = {
   isModalOpen: boolean
   onClose: () => void
+  editableTodo: Todo | null
 }
 
-export default function EditModal({ isModalOpen, onClose }: EditModalType) {
+export default function EditModal({ isModalOpen, onClose, editableTodo }: EditModalType) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+  }
   return (
     <div
       className={`fixed inset-0 h-screen w-full bg-gray-800 opacity-80 transition-colors duration-300 flex items-center justify-center ${
@@ -20,11 +26,12 @@ export default function EditModal({ isModalOpen, onClose }: EditModalType) {
         <h2 className="text-lg font-semibold mb-4">Edit Todo</h2>
 
         {/* Edit form can go here */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             className="w-full p-2 border border-gray-300 rounded mb-4"
             placeholder="Edit your task"
+            value={editableTodo?.title}
           />
           <button
             type="submit"

@@ -94,6 +94,7 @@ export default function TaskManager() {
       <EditModal
         isModalOpen={isModalOpen}
         onClose={handleCloseModal}
+        editableTodo={editableTodo}
       />
     </>
   )
