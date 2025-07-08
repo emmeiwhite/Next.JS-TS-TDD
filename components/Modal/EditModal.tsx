@@ -5,14 +5,11 @@ type EditModalType = {
   isModalOpen: boolean
   onClose: () => void
   editableTodo: Todo | null
+  onUpdate: (id: string, text: string) => void
 }
 
-export default function EditModal({ isModalOpen, onClose, editableTodo }: EditModalType) {
+export default function EditModal({ isModalOpen, onClose, editableTodo, onUpdate }: EditModalType) {
   const [inputText, setInputText] = useState('')
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-  }
 
   /** --- The Error Fix with regard to editableTodo:Todo | null --- */
   useEffect(() => {
@@ -23,6 +20,14 @@ export default function EditModal({ isModalOpen, onClose, editableTodo }: EditMo
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputText(e.target.value)
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    if (!inputText || !editableTodo) return
+
+    onUpdate(editableTodo.id, inputText)
   }
 
   return (

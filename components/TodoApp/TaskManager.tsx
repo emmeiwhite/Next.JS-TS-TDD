@@ -16,7 +16,6 @@ export default function TaskManager() {
 
   /** --- 3. For Edit feature & Modal Logic:
    * Modal logic is triggered by children, but controlled by parent
-   *
    *  --- */
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editableTodo, setEditableTodo] = useState<Todo | null>(null)
@@ -71,6 +70,11 @@ export default function TaskManager() {
     })
   }
 
+  // When the user clicks on the update button after typing the edited text in the modal
+  function handleUpdate(id: string, editedText: string) {
+    console.log(id, editedText)
+  }
+
   return (
     <>
       <div className="bg-gray-100 min-h-[calc(100vh-120px)]">
@@ -95,6 +99,7 @@ export default function TaskManager() {
         isModalOpen={isModalOpen}
         onClose={handleCloseModal}
         editableTodo={editableTodo}
+        onUpdate={handleUpdate}
       />
     </>
   )
