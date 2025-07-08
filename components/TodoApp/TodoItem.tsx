@@ -5,6 +5,7 @@ type TodoItemType = {
   onDelete: (id: string) => void
   onToggle: (id: string) => void
 }
+
 export default function TodoItem({ todo, onDelete, onToggle }: TodoItemType) {
   return (
     <div className="flex space-between items-center w-full gap-5">

@@ -3,9 +3,11 @@ import TodoItem from './TodoItem'
 
 type TodoItemsType = {
   todoItems: Todo[]
+  onDelete: (id: string) => void
+  onToggle: (id: string) => void
 }
 
-export default function TodoItems({ todoItems }: TodoItemsType) {
+export default function TodoItems({ todoItems, onDelete, onToggle }: TodoItemsType) {
   console.log(todoItems)
   return (
     <div className="mt-4 px-4">
@@ -16,6 +18,8 @@ export default function TodoItems({ todoItems }: TodoItemsType) {
           <TodoItem
             key={todo.id}
             todo={todo}
+            onDelete={onDelete}
+            onToggle={onToggle}
           />
         ))}
       </div>

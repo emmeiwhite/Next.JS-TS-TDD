@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import TodoForm from './TodoForm'
 import TodoItems from './TodoItems'
+import { on } from 'events'
 
 export type Todo = {
   id: string
@@ -12,10 +13,25 @@ export type Todo = {
 export default function TaskManager() {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
 
+  /** TodoForm Related Functionality */
   // Passing function as prop to get data from the children
   function getTodoItem(item: Todo) {
     console.log(item)
     setTodoItems([...todoItems, item])
+  }
+
+  /** TodoItems Related Functionality */
+
+  // 1. delete items
+
+  function onDelete(id: string) {
+    console.log(id)
+  }
+
+  // 2. handle toggle
+
+  function onToggle(id: string) {
+    console.log(id)
   }
 
   return (
@@ -26,7 +42,11 @@ export default function TaskManager() {
           {/* TodoForm */}
           <TodoForm getTodoItem={getTodoItem} />
           {/* TodoItems */}
-          <TodoItems todoItems={todoItems} />
+          <TodoItems
+            todoItems={todoItems}
+            onDelete={onDelete}
+            onToggle={onToggle}
+          />
         </div>
       </div>
     </div>
