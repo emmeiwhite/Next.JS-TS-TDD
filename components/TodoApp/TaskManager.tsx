@@ -18,7 +18,7 @@ export default function TaskManager() {
    * Modal logic is triggered by children, but controlled by parent
    *
    *  --- */
-  const [isModalOpen, setIsModalOpen] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   /** TodoForm Related Functionality */
   // Passing function as prop to get data from the children
@@ -51,6 +51,16 @@ export default function TaskManager() {
     setTodoItems(updatedItems)
   }
 
+  /** --- 4. Modal Functionalities --- */
+
+  function handleOpenModal() {
+    setIsModalOpen(true)
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false)
+  }
+
   return (
     <>
       <div className="bg-gray-100 min-h-[calc(100vh-120px)]">
@@ -64,13 +74,17 @@ export default function TaskManager() {
               todoItems={todoItems}
               onDelete={onDelete}
               onToggle={onToggle}
+              onOpen={handleOpenModal}
             />
           </div>
         </div>
       </div>
 
       {/* Modal Rendering on current condition */}
-      <EditModal isModalOpen={isModalOpen} />
+      <EditModal
+        isModalOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </>
   )
 }

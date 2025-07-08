@@ -4,9 +4,10 @@ type TodoItemType = {
   todo: Todo
   onDelete: (id: string) => void
   onToggle: (id: string) => void
+  onOpen: () => void
 }
 
-export default function TodoItem({ todo, onDelete, onToggle }: TodoItemType) {
+export default function TodoItem({ todo, onDelete, onToggle, onOpen }: TodoItemType) {
   return (
     <div className={`flex space-between items-center w-full gap-5 `}>
       <input
@@ -21,7 +22,9 @@ export default function TodoItem({ todo, onDelete, onToggle }: TodoItemType) {
         }`}>
         {todo.title}
       </p>
-      <button className="px-3 py-1 bg-orange-500 hover:bg-orange-600 transition-colors duration-300 cursor-pointer text-white rounded-sm">
+      <button
+        className="px-3 py-1 bg-orange-500 hover:bg-orange-600 transition-colors duration-300 cursor-pointer text-white rounded-sm"
+        onClick={() => onOpen()}>
         Edit
       </button>
 

@@ -5,9 +5,10 @@ type TodoItemsType = {
   todoItems: Todo[]
   onDelete: (id: string) => void
   onToggle: (id: string) => void
+  onOpen: () => void
 }
 
-export default function TodoItems({ todoItems, onDelete, onToggle }: TodoItemsType) {
+export default function TodoItems({ todoItems, onDelete, onToggle, onOpen }: TodoItemsType) {
   console.log(todoItems)
   return (
     <div className="mt-4 px-4">
@@ -20,6 +21,7 @@ export default function TodoItems({ todoItems, onDelete, onToggle }: TodoItemsTy
             todo={todo}
             onDelete={onDelete}
             onToggle={onToggle}
+            onOpen={onOpen}
           />
         ))}
       </div>
