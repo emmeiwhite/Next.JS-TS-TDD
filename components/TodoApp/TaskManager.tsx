@@ -73,12 +73,15 @@ export default function TaskManager() {
   function handleUpdate(id: string, editedText: string) {
     console.log(id, editedText)
 
-    todoItems.map(item => {
+    const updatedItems = todoItems.map(item => {
       if (item.id === id) {
         return { ...item, title: editedText }
       }
       return item
     })
+
+    setTodoItems(updatedItems)
+    handleCloseModal()
   }
 
   return (
