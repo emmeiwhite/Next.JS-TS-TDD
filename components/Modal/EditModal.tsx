@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import type { Todo } from '../TodoApp/TaskManager'
 
 type EditModalType = {
@@ -7,9 +8,22 @@ type EditModalType = {
 }
 
 export default function EditModal({ isModalOpen, onClose, editableTodo }: EditModalType) {
+  const [inputText, setInputText] = useState('')
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
   }
+
+  /** --- The Error Fix with regard to editableTodo:Todo | null --- */
+  useEffect(() => {
+    if (editableTodo) {
+      setInputText(editableTodo.title)
+    }
+  }, [editableTodo])
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInputText(e.target.value)
+  }
+
   return (
     <div
       className={`fixed inset-0 h-screen w-full bg-gray-800 opacity-80 transition-colors duration-300 flex items-center justify-center ${
@@ -31,7 +45,8 @@ export default function EditModal({ isModalOpen, onClose, editableTodo }: EditMo
             type="text"
             className="w-full p-2 border border-gray-300 rounded mb-4"
             placeholder="Edit your task"
-            value={editableTodo?.title}
+            value={inputText}
+            onChange={handleChange}
           />
           <button
             type="submit"
