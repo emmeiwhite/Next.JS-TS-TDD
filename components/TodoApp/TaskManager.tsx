@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import TodoForm from './TodoForm'
 import TodoItems from './TodoItems'
-import { on } from 'events'
+
 import EditModal from '../Modal/EditModal'
 
 export type Todo = {
@@ -19,11 +19,11 @@ export default function TaskManager() {
    *
    *  --- */
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [editableTodo, setEditableTodo] = useState<Todo | null>(null)
 
   /** TodoForm Related Functionality */
   // Passing function as prop to get data from the children
   function getTodoItem(item: Todo) {
-    console.log(item)
     setTodoItems([...todoItems, item])
   }
 
@@ -53,12 +53,22 @@ export default function TaskManager() {
 
   /** --- 4. Modal Functionalities --- */
 
-  function handleOpenModal() {
+  /* --- As soon as the modal opens, we need to also provide the todo to be edited with it, so we rather handle open logic in handeEdit method below along with editableTodo logic
+    function handleOpenModal() {
     setIsModalOpen(true)
   }
+  --- */
 
   function handleCloseModal() {
     setIsModalOpen(false)
+  }
+
+  function handleEdit(todo: Todo) {
+    setEditableTodo(todo)
+    setIsModalOpen(prev => {
+      console.log(editableTodo)
+      return !prev
+    })
   }
 
   return (
@@ -74,7 +84,7 @@ export default function TaskManager() {
               todoItems={todoItems}
               onDelete={onDelete}
               onToggle={onToggle}
-              onOpen={handleOpenModal}
+              onEdit={handleEdit}
             />
           </div>
         </div>
