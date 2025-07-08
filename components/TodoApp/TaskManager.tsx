@@ -33,7 +33,15 @@ export default function TaskManager() {
   // 2. handle toggle
 
   function onToggle(id: string) {
-    console.log(id)
+    const updatedItems = todoItems.map(item => {
+      if (item.id === id) {
+        item.isComplete = !item.isComplete
+        return item
+      }
+      return item
+    })
+
+    setTodoItems(updatedItems)
   }
 
   return (
