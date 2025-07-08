@@ -41,8 +41,7 @@ export default function TaskManager() {
   function onToggle(id: string) {
     const updatedItems = todoItems.map(item => {
       if (item.id === id) {
-        item.isComplete = !item.isComplete
-        return item
+        return { ...item, isComplete: !item.isComplete }
       }
       return item
     })
@@ -73,6 +72,13 @@ export default function TaskManager() {
   // When the user clicks on the update button after typing the edited text in the modal
   function handleUpdate(id: string, editedText: string) {
     console.log(id, editedText)
+
+    todoItems.map(item => {
+      if (item.id === id) {
+        return { ...item, title: editedText }
+      }
+      return item
+    })
   }
 
   return (
