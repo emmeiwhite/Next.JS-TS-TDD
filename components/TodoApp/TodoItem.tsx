@@ -21,6 +21,10 @@ export default function TodoItem({ todo, onDelete, onToggle }: TodoItemType) {
         }`}>
         {todo.title}
       </p>
+      <button className="px-3 py-1 bg-orange-500 hover:bg-orange-600 transition-colors duration-300 cursor-pointer text-white rounded-sm">
+        Edit
+      </button>
+
       <button
         className="px-3 py-1 bg-orange-500 hover:bg-orange-600 transition-colors duration-300 cursor-pointer text-white rounded-sm"
         onClick={() => onDelete(todo.id)}>
