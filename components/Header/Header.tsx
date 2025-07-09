@@ -21,6 +21,12 @@ export default function Header() {
             className="hover:underline">
             My Blog
           </Link>
+
+          <Link
+            href={'/challenges'}
+            className="hover:underline">
+            Challenges
+          </Link>
         </div>
       </div>
     </div>
