@@ -1,5 +1,7 @@
+import LoaderSpinner from '@/components/LoaderSpinner/LoaderSpinner'
 import Views from '@/components/Views/Views'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 export default function BlogPage() {
   return (
@@ -29,7 +31,7 @@ export default function BlogPage() {
           <p>
             <Link
               href={'/blog/reactjs'}
-              className="hover:underline text-orange-500 hover:text-orange-600 transition-colors duration-300">
+              className="hover:underline text-orange-600 hover:text-orange-700 transition-colors duration-300">
               React.js
             </Link>
           </p>
@@ -39,7 +41,9 @@ export default function BlogPage() {
 
         <h3 className="mt-8 mb-3 text-xl font-bold">Stats:</h3>
 
-        <Views />
+        <Suspense fallback={<LoaderSpinner />}>
+          <Views />
+        </Suspense>
       </div>
     </div>
   )
