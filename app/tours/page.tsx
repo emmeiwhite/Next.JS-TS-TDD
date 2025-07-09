@@ -1,4 +1,4 @@
-const url: string = 'https://www.course-api.com/react-tours-projects'
+const url: string = 'https://www.course-api.com/react-tours-project'
 
 type Tour = {
   id: string
@@ -8,7 +8,7 @@ type Tour = {
   price: string
 }
 
-async function fetchTours(url: string): Promise<Tour[]> {
+async function fetchTours(url: string): Promise<Tour[] | string> {
   // Just a 3s delay
   await new Promise(resolve => setTimeout(resolve, 3000))
 
@@ -24,7 +24,8 @@ async function fetchTours(url: string): Promise<Tour[]> {
     const errorMsg = error instanceof Error ? error.message : 'there was an error ...'
 
     console.log(errorMsg)
-    return []
+    return errorMsg
+    // Will look into this InshaAllah! But for now, Sense of Urgency regarding Suspense & Hydration
   }
 }
 
