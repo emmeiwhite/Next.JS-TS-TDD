@@ -1,3 +1,4 @@
+import Views from '@/components/Views/Views'
 import Link from 'next/link'
 
 export default function BlogPage() {
@@ -12,7 +13,7 @@ export default function BlogPage() {
           <p>
             <Link
               href={'/blog/typescript'}
-              className="hover:underline">
+              className="hover:underline text-orange-500 hover:text-orange-600 transition-colors duration-300">
               TypeScript
             </Link>
           </p>
@@ -20,7 +21,7 @@ export default function BlogPage() {
           <p>
             <Link
               href={'/blog/nextjs'}
-              className="hover:underline">
+              className="hover:underline text-orange-500 hover:text-orange-600 transition-colors duration-300">
               Next.js
             </Link>
           </p>
@@ -28,11 +29,17 @@ export default function BlogPage() {
           <p>
             <Link
               href={'/blog/reactjs'}
-              className="hover:underline">
+              className="hover:underline text-orange-500 hover:text-orange-600 transition-colors duration-300">
               React.js
             </Link>
           </p>
         </div>
+
+        {/* Views */}
+
+        <h3 className="mt-8 mb-3 text-xl font-bold">Stats:</h3>
+
+        <Views />
       </div>
     </div>
   )
