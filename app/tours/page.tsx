@@ -9,6 +9,9 @@ type Tour = {
 }
 
 async function fetchTours(url: string): Promise<Tour[]> {
+  // Just a 3s delay
+  await new Promise(resolve => setTimeout(resolve, 3000))
+
   try {
     const response = await fetch(url)
     if (!response.ok) {
