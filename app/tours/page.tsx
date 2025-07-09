@@ -8,7 +8,7 @@ type Tour = {
   price: string
 }
 
-async function fetchTours(url: string): Promise<Tour[] | string> {
+async function fetchTours(url: string): Promise<Tour[]> {
   // Just a 3s delay
   await new Promise(resolve => setTimeout(resolve, 3000))
 
@@ -24,7 +24,7 @@ async function fetchTours(url: string): Promise<Tour[] | string> {
     const errorMsg = error instanceof Error ? error.message : 'there was an error ...'
 
     console.log(errorMsg)
-    return errorMsg
+    return []
     // Will look into this InshaAllah! But for now, Sense of Urgency regarding Suspense & Hydration
   }
 }

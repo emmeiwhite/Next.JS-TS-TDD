@@ -17,10 +17,9 @@ export default function Header() {
           </Link>
 
           <Link
-            href="https://imran-rafiq-rather.netlify.app/"
-            target="_blank"
+            href={'/blog'}
             className="hover:underline">
-            My Portfolio
+            My Blog
           </Link>
         </div>
       </div>
