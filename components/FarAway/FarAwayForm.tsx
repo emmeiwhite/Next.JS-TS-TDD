@@ -23,7 +23,8 @@ export default function FarAwayForm({ addListItem }: FarAwayFormType) {
     const newItem: Item = {
       quantity: Number(quantity),
       userName,
-      id: new Date().toISOString()
+      id: new Date().toISOString(),
+      completed: false
     }
 
     addListItem(newItem)
@@ -64,7 +65,8 @@ export default function FarAwayForm({ addListItem }: FarAwayFormType) {
             id="itemName"
             value={userName}
             onChange={handleInputChange}
-            className="border-1 rounded border-gray-400 outline:none focus:outline-blue-400 focus:ring-2 px-2 py-1"
+            className="border-1 rounded border-gray-400 outline:none focus:outline-blue-400 focus:ring-2 px-2 py-1 placeholder:text-gray-500"
+            placeholder="add item ..."
           />
         </label>
 

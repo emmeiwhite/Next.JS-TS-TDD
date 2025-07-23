@@ -14,11 +14,24 @@ export default function FarAwayParent() {
   function addListItem(item: Item) {
     setListItems([...listItems, item])
   }
+
+  /** Another function being passed as prop, to update the state available here  */
+  function handleCheckboxChange(id: string) {
+    const updatedList = listItems.map((item: Item) => {
+      return item.id !== id ? item : { ...item, completed: !item.completed }
+    })
+    setListItems(updatedList)
+    console.log(listItems)
+  }
+
   return (
     <div>
       <FarAwayHeader />
       <FarAwayForm addListItem={addListItem} />
-      <FarAwayPackings listItems={listItems} />
+      <FarAwayPackings
+        listItems={listItems}
+        handleCheckboxChange={handleCheckboxChange}
+      />
       <FarAwayFooter />
     </div>
   )
