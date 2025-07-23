@@ -1,6 +1,6 @@
 export type Item = {
   quantity: number
-  userName: string
+  itemName: string
   id: string
   completed: boolean
 }

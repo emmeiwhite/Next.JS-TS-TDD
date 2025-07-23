@@ -8,28 +8,28 @@ type FarAwayFormType = {
 }
 
 export default function FarAwayForm({ addListItem }: FarAwayFormType) {
-  const [userName, setUserName] = useState('')
+  const [itemName, setitemName] = useState('')
   const [quantity, setQuantity] = useState('1')
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setUserName(e.target.value)
+    setitemName(e.target.value)
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (!userName || !quantity) return
+    if (!itemName || !quantity) return
 
     const newItem: Item = {
       quantity: Number(quantity),
-      userName,
+      itemName,
       id: new Date().toISOString(),
       completed: false
     }
 
     addListItem(newItem)
 
-    setUserName('')
+    setitemName('')
     setQuantity('1')
   }
 
@@ -63,7 +63,7 @@ export default function FarAwayForm({ addListItem }: FarAwayFormType) {
           <input
             type="text"
             id="itemName"
-            value={userName}
+            value={itemName}
             onChange={handleInputChange}
             className="border-1 rounded border-gray-400 outline:none focus:outline-blue-400 focus:ring-2 px-2 py-1 placeholder:text-gray-500"
             placeholder="add item ..."

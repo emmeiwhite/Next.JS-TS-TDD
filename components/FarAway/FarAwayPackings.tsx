@@ -13,19 +13,23 @@ export default function FarAwayPackings({ listItems, handleCheckboxChange }: Faw
         {listItems.map((item: Item) => {
           return (
             <div key={item.id}>
-              <p className="flex gap-3 border-1 border-gray-500 px-2 py-1">
-                <label htmlFor="checkItem">
-                  <input
-                    type="checkbox"
-                    id="checkItem"
-                    checked={item.completed}
-                    onChange={() => handleCheckboxChange(item.id)}
-                  />
-                </label>
+              <div className="flex gap-3 border-1 border-gray-500 px-4 py-1 justify-between">
+                <p className="flex gap-3">
+                  <label htmlFor="checkItem">
+                    <input
+                      type="checkbox"
+                      id="checkItem"
+                      checked={item.completed}
+                      onChange={() => handleCheckboxChange(item.id)}
+                    />
+                  </label>
 
-                <span>{item.quantity}</span>
-                <span>{item.userName}</span>
-              </p>
+                  <span className="font-bold">{item.quantity}</span>
+                  <span className="font-bold capitalize">{item.itemName}</span>
+                </p>
+
+                <button>❌</button>
+              </div>
             </div>
           )
         })}
