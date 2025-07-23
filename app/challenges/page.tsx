@@ -1,4 +1,5 @@
 import Challenge1 from '@/components/Challenges/Challenge1'
+import Checkout from '@/components/Checkout/Checkout'
 
 export default function page() {
   return (
@@ -19,6 +20,10 @@ export default function page() {
             name="imran"
             email="imran@gmail.com"
           />
+        </div>
+
+        <div>
+          <Checkout />
         </div>
       </div>
     </div>

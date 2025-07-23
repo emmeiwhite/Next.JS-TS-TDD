@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import Promotions from './Promotions'
 import Total from './Total'
@@ -10,7 +12,7 @@ export default function Checkout() {
   }
   return (
     <div>
-      <h1>Checkout</h1>
+      <h1 className="mt-4 font-bold ">Checkout</h1>
       <Promotions
         coupon={coupon}
         updateCoupon={updateCoupon}
