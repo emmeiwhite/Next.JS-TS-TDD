@@ -1,17 +1,35 @@
 'use client'
 
 import { useState } from 'react'
+import { Item } from './types'
 
-export default function FarAwayForm() {
+type FarAwayFormType = {
+  addListItem: (item: Item) => void
+}
+
+export default function FarAwayForm({ addListItem }: FarAwayFormType) {
   const [userName, setUserName] = useState('')
   const [quantity, setQuantity] = useState('1')
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserName(e.target.value)
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+
+    if (!userName || !quantity) return
+
+    const newItem: Item = {
+      quantity: Number(quantity),
+      userName,
+      id: new Date().toISOString()
+    }
+
+    addListItem(newItem)
+
+    setUserName('')
+    setQuantity('1')
   }
 
   function handleSelectChange(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -45,10 +63,16 @@ export default function FarAwayForm() {
             type="text"
             id="itemName"
             value={userName}
-            onChange={handleChange}
-            className="border-1 rounded border-gray-400 outline:none focus:outline-blue-400 focus:ring-2"
+            onChange={handleInputChange}
+            className="border-1 rounded border-gray-400 outline:none focus:outline-blue-400 focus:ring-2 px-2 py-1"
           />
         </label>
+
+        <button
+          type="submit"
+          className="border-1 border-gray-400 rounded-md px-3 py-1 cursor-pointer">
+          Add items
+        </button>
       </form>
     </div>
   )
