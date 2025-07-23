@@ -28,3 +28,10 @@ const doTask = (name: string): void => {
 }
 
 doTask('imran')
+
+// Returning Promise from a function
+function fetchData(url: string): Promise<string> {
+  return Promise.resolve(`Data from ${url}`)
+}
+
+fetchData('https://test.com')
