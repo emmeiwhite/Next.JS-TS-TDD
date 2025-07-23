@@ -35,3 +35,11 @@ function fetchData(url: string): Promise<string> {
 }
 
 fetchData('https://test.com')
+
+// rest operator ...names
+
+function introduce(salutation: string, ...names: string[]): string {
+  return `${salutation} ${names.join(' ')}`
+}
+
+introduce('Move Forward', 'imi', 'roufi', 'rafs')
