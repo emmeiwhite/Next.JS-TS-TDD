@@ -7,6 +7,27 @@ const TodoContext = createContext(null)
 export default function TodoContextProvider({ children }) {
   const [testValue, setTestValue] = useState(4)
 
+  const numbers: Array<number> = [2, 3, 4]
+  const strings: string[] = ['a', 'ddd', 'uu']
+  let myRegex: RegExp = /foo/
+
+  console.log(numbers)
+  console.log(strings)
+  console.log(myRegex)
+
+  myRegex = /boo/
+
+  type PersonType = {
+    firstName: string
+    lastName: string
+  }
+
+  const person: PersonType = {
+    firstName: 'Imi',
+    lastName: 'jimmi'
+  }
+
+  console.log(person)
   // All handlers here itself at Context Level that work on the State data
   function updateValue() {
     setTestValue(prev => prev + 1)
