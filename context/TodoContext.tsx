@@ -28,6 +28,18 @@ export default function TodoContextProvider({ children }) {
   }
 
   console.log(person)
+
+  /** Map of ids */
+  /** Objects as Maps in JavaScript Record Type: Define both key and value type */
+  const ids: Record<number, string> = {
+    10: 'a',
+    20: 'b'
+  }
+
+  ids[30] = '30'
+
+  const arr = [1, 2, 3].map(v => `${v * 10}`)
+  console.log(arr)
   // All handlers here itself at Context Level that work on the State data
   function updateValue() {
     setTestValue(prev => prev + 1)
