@@ -27,6 +27,12 @@ export default function Header() {
             className="hover:underline">
             Challenges
           </Link>
+
+          <Link
+            href={'/far-away'}
+            className="hover:underline">
+            FarAway
+          </Link>
         </div>
       </div>
     </div>
