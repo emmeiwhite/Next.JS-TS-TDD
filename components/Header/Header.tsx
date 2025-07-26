@@ -23,9 +23,9 @@ export default function Header() {
           </Link>
 
           <Link
-            href={'/challenges'}
+            href={'/playground'}
             className="hover:underline">
-            Challenges
+            Playground
           </Link>
 
           <Link
