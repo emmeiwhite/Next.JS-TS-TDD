@@ -1,3 +1,4 @@
+import PlaygroundBox from '@/components/Playground/PlaygroundBox'
 import PlaygroundHeading from '@/components/Playground/PlaygroundHeading'
 
 export default function Playground() {
@@ -5,6 +6,11 @@ export default function Playground() {
     <div className="py-6">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
         <PlaygroundHeading title="The FarAway Dream Home" />
+        <PlaygroundBox>
+          <p>
+            We are type casting the children props with <code>React.ReactNode</code>
+          </p>
+        </PlaygroundBox>
       </div>
     </div>
   )
