@@ -1,4 +1,4 @@
-export default function SingleBook() {
+export default async function SingleBook() {
   return (
     <div className="py-6">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
