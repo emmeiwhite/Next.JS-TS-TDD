@@ -20,7 +20,8 @@ export default function PlaygroundList({ items, handleClick }: ListType) {
           return (
             <li
               key={item.id}
-              onClick={() => handleClick?.(item.name)}>
+              onClick={() => handleClick?.(item.name)}
+              className="cursor-pointer hover:text-amber-800 hover:font-bold">
               {item.name}
             </li>
           )
