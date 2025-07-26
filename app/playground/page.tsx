@@ -1,5 +1,6 @@
 import PlaygroundBox from '@/components/Playground/PlaygroundBox'
 import PlaygroundHeading from '@/components/Playground/PlaygroundHeading'
+import PlaygroundList from '@/components/Playground/PlaygroundList'
 
 export default function Playground() {
   return (
@@ -11,6 +12,8 @@ export default function Playground() {
             We are type casting the children props with <code>React.ReactNode</code>
           </p>
         </PlaygroundBox>
+
+        <PlaygroundList items={['one', 'two', 'three', 'four']} />
       </div>
     </div>
   )
