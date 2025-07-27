@@ -46,14 +46,15 @@ export default React.memo(function ListItemsParent({ test }: { test: string }) {
   const [item, setItem] = useState<string>('')
 
   // General behaviour is that: React re-creates functions on every render.
-  const handleCheckedToggle = (id: string) => {
+  /** Without useCallback() the TaskItem memoized component re-renders, because every time item value gets updated on each onChange key-stroke, the React re-defines the handleCheckToggle and TaskItem feels it is a new reference or new function and hence re-renders TaskItem */
+  const handleCheckedToggle = useCallback((id: string) => {
     console.log('handleChecked Invoked!')
     setItems(prev => {
       return prev.map(item => {
         return item.id !== id ? item : { ...item, completed: !item.completed }
       })
     })
-  }
+  }, [])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -70,9 +71,9 @@ export default React.memo(function ListItemsParent({ test }: { test: string }) {
     setItem('')
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setItem(e.target.value)
-  }
+  }, [])
 
   return (
     <div className="mt-7">
