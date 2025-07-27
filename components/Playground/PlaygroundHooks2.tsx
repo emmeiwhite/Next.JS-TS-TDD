@@ -1,6 +1,6 @@
 'use client'
 
-import { useReducer, useRef, useState } from 'react'
+import { useCallback, useReducer, useRef, useState } from 'react'
 import PlaygroundHeading from './PlaygroundHeading'
 
 type Item = {
@@ -106,19 +106,27 @@ export default function PlaygroundHooks2() {
             <li
               key={item.id}
               className="flex items-center gap-2 p-4 bg-white rounded-lg shadow-sm border border-gray-200 space-x-4">
-              <select
-                ref={quantityRef}
-                onChange={handleSelectChange}>
-                {Array.from({ length: 15 }).map((_, index) => {
-                  return (
-                    <option
-                      value={index + 1}
-                      key={index + 1}>
-                      {index + 1}
-                    </option>
-                  )
-                })}
-              </select>
+              {/* quanity data selection */}
+              <div>
+                <label
+                  htmlFor="quantity"
+                  className="block text-gray-700 font-medium mb-2">
+                  <select
+                    ref={quantityRef}
+                    id="quantity"
+                    defaultValue="1"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    {Array.from({ length: 15 }).map((_, index) => (
+                      <option
+                        value={index + 1}
+                        key={index + 1}>
+                        {index + 1}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
               <div className="flex items-center gap-4 flex-1">
                 <input
                   type="checkbox"
@@ -136,7 +144,7 @@ export default function PlaygroundHooks2() {
 
               <button
                 onClick={() => handleDelete(item.id)}
-                className="text-red-500 hover:text-red-700 transition-colors">
+                className="text-red-500 hover:text-red-700 text-bold text-2xl  cursor-pointer transition-colors">
                 &#10005;
               </button>
             </li>
