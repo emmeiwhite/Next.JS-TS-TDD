@@ -11,27 +11,38 @@ type Item = {
 
 type ActionType = { type: 'ADD'; text: string } | { type: 'DELETE'; id: string }
 
-function reducer() {}
+// State updates will now happen from the reducer, not within the Application(View)
+function reducer(state: Item[], action: ActionType): Item[] {
+  switch (action.type) {
+    case 'ADD':
+      return [...state, { id: new Date().toISOString(), name: action.text, completed: false }]
+    case 'DELETE':
+      return state.filter(item => item.id !== action.id)
+    default:
+      return state
+  }
+}
 
 export default function PlaygroundHooks2() {
-  const [todos, dispatch] = useReducer(reducer, [])
+  const [items, dispatch] = useReducer(reducer, [] as Item[])
   const [item, setItem] = useState('')
-
-  // Items
-  function addTodo(todo: Item) {}
-
-  function deleteTodo(id: string) {}
 
   // Form
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setItem(e.target.value)
   }
 
-  function handleSubmit() {}
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    if (!item) return
+
+    //   Dispatch Action to add this newItem to the items state
+    dispatch({ type: 'ADD', text: item })
+    setItem('') // Clear Input
+  }
 
   return (
     <div className="mt-7">
-      <PlaygroundHeading title="Items" />
       <form
         onSubmit={handleSubmit}
         className="max-w-md p-4 bg-white rounded-xl shadow-md space-y-4">
@@ -59,7 +70,19 @@ export default function PlaygroundHooks2() {
         </div>
       </form>
 
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></ul>
+      <PlaygroundHeading title="Items" />
+
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {items?.map((item: Item) => {
+          return (
+            <li
+              key={item.id}
+              className="p-4 bg-gray-100 rounded-lg shadow-sm text-lg text-gray-800">
+              {item.name}
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
