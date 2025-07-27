@@ -9,7 +9,7 @@ type Item = {
   completed: boolean
 }
 
-type ActionType = { type: 'ADD'; text: string } | { type: 'DELETE'; id: string }
+type ActionType = { type: 'ADD'; text: string } | { type: 'DELETE'; id: string } | { type: 'UPDATE'; id: string } 
 
 // State updates will now happen from the reducer, not within the Application(View)
 function reducer(state: Item[], action: ActionType): Item[] {
@@ -17,7 +17,9 @@ function reducer(state: Item[], action: ActionType): Item[] {
     case 'ADD':
       return [...state, { id: new Date().toISOString(), name: action.text, completed: false }]
     case 'DELETE':
-      return state.filter(item => item.id !== action.id)
+          return state.filter(item => item.id !== action.id)
+      case 'UPDATE':
+          return state.map(item=>item.)
     default:
       return state
   }
@@ -43,6 +45,10 @@ export default function PlaygroundHooks2() {
 
   function handleDelete(id: string) {
     dispatch({ type: 'DELETE', id })
+  }
+
+  function handleCheckboxChange(id:string) {
+    dispatch({ type: 'UPDATE',  id})
   }
   return (
     <div className="mt-7">
