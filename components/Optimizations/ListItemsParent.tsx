@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 type Item = {
   id: number
@@ -13,7 +13,8 @@ type ListItem = {
   handleCheckedToggle: (id: number) => void
 }
 
-function TaskItem({ item, handleCheckedToggle }: ListItem) {
+// Memoize the TaskItem component so that only when the item prop or functional prop handleCheckedToggle changes it would get re-rendered on then.
+const TaskItem = React.memo(function TaskItem({ item, handleCheckedToggle }: ListItem) {
   return (
     <li
       key={item.id}
@@ -31,8 +32,9 @@ function TaskItem({ item, handleCheckedToggle }: ListItem) {
       </label>
     </li>
   )
-}
-export default function ListItemsParent() {
+})
+
+export default React.memo(function ListItemsParent({ test }: { test: string }) {
   const [items, setItems] = useState<Item[]>([
     { id: 1, name: 'Pray Fajr', completed: false },
     { id: 2, name: 'Read Quran', completed: false },
@@ -64,4 +66,4 @@ export default function ListItemsParent() {
       </ul>
     </div>
   )
-}
+})

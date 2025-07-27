@@ -66,7 +66,7 @@ export default function OptimizedParent() {
 
       {/* useCallback() Example */}
 
-      <ListItemsParent />
+      <ListItemsParent test="test" />
     </div>
   )
 }
