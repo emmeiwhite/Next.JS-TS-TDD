@@ -41,6 +41,9 @@ export default function PlaygroundHooks2() {
     setItem('') // Clear Input
   }
 
+  function handleDelete(id: string) {
+    dispatch({ type: 'DELETE', id })
+  }
   return (
     <div className="mt-7">
       <form
@@ -77,8 +80,29 @@ export default function PlaygroundHooks2() {
           return (
             <li
               key={item.id}
-              className="p-4 bg-gray-100 rounded-lg shadow-sm text-lg text-gray-800">
-              {item.name}
+              className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200 space-x-4">
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  checked={item.completed}
+                  onChange={() => {
+                    // You will handle toggle logic InshaAllah
+                  }}
+                  className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span
+                  className={`text-lg ${
+                    item.completed ? 'line-through text-gray-400' : 'text-gray-800'
+                  }`}>
+                  {item.name}
+                </span>
+              </div>
+
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="text-red-500 hover:text-red-700 transition-colors">
+                &#10005;
+              </button>
             </li>
           )
         })}
