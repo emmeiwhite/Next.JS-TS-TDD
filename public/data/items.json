@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "itemName": "Toothbrush",
+    "completed": false
+  },
+  {
+    "id": "2",
+    "itemName": "Passport",
+    "completed": true
+  },
+  {
+    "id": "3",
+    "itemName": "T-Shirts",
+    "completed": false
+  },
+  {
+    "id": "4",
+    "itemName": "Phone Charger",
+    "completed": true
+  },
+  {
+    "id": "5",
+    "itemName": "Sunscreen",
+    "completed": false
+  },
+  {
+    "id": "6",
+    "itemName": "Water Bottle",
+    "completed": true
+  }
+]

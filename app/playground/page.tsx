@@ -2,6 +2,8 @@
 
 import PlaygroundBox from '@/components/Playground/PlaygroundBox'
 import PlaygroundHeading from '@/components/Playground/PlaygroundHeading'
+import PlaygroundHooks from '@/components/Playground/PlaygroundHooks'
+import PlaygroundHooks2 from '@/components/Playground/PlaygroundHooks2'
 import PlaygroundList from '@/components/Playground/PlaygroundList'
 import { useCallback } from 'react'
 
@@ -19,13 +21,14 @@ const items = [
 ]
 
 export default function Playground() {
-  const handleClick = useCallback((item: string) => {
-    console.log(item)
-  }, [])
+  // const handleClick = useCallback((item: string) => {
+  //   console.log(item)
+  // }, [])
+
   return (
     <div className="py-6">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
-        <PlaygroundHeading title="The FarAway Dream Home" />
+        {/* <PlaygroundHeading title="The FarAway Dream Home" />
         <PlaygroundBox>
           <p>
             We are type casting the children props with <code>React.ReactNode</code>
@@ -35,7 +38,12 @@ export default function Playground() {
         <PlaygroundList
           items={items}
           handleClick={handleClick}
-        />
+        /> */}
+
+        {/* Hooks */}
+        <PlaygroundHooks />
+
+        <PlaygroundHooks2 />
       </div>
     </div>
   )
