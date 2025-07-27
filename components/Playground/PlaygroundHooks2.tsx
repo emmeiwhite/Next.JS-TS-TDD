@@ -9,7 +9,10 @@ type Item = {
   completed: boolean
 }
 
-type ActionType = { type: 'ADD'; text: string } | { type: 'DELETE'; id: string } | { type: 'UPDATE'; id: string } 
+type ActionType =
+  | { type: 'ADD'; text: string }
+  | { type: 'DELETE'; id: string }
+  | { type: 'UPDATE'; id: string }
 
 // State updates will now happen from the reducer, not within the Application(View)
 function reducer(state: Item[], action: ActionType): Item[] {
@@ -17,9 +20,11 @@ function reducer(state: Item[], action: ActionType): Item[] {
     case 'ADD':
       return [...state, { id: new Date().toISOString(), name: action.text, completed: false }]
     case 'DELETE':
-          return state.filter(item => item.id !== action.id)
-      case 'UPDATE':
-          return state.map(item=>item.)
+      return state.filter(item => item.id !== action.id)
+    case 'UPDATE':
+      return state.map(item =>
+        item.id !== action.id ? item : { ...item, completed: !item.completed }
+      )
     default:
       return state
   }
@@ -47,8 +52,8 @@ export default function PlaygroundHooks2() {
     dispatch({ type: 'DELETE', id })
   }
 
-  function handleCheckboxChange(id:string) {
-    dispatch({ type: 'UPDATE',  id})
+  function handleCheckboxChange(id: string) {
+    dispatch({ type: 'UPDATE', id })
   }
   return (
     <div className="mt-7">
@@ -87,18 +92,16 @@ export default function PlaygroundHooks2() {
             <li
               key={item.id}
               className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm border border-gray-200 space-x-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
                   checked={item.completed}
-                  onChange={() => {
-                    // You will handle toggle logic InshaAllah
-                  }}
-                  className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  onChange={() => handleCheckboxChange(item.id)}
+                  className="min-h-5 min-w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 block"
                 />
                 <span
-                  className={`text-lg ${
-                    item.completed ? 'line-through text-gray-400' : 'text-gray-800'
+                  className={`line-clamp-2 ${
+                    item.completed ? 'line-through text-gray-400 ' : 'text-gray-800'
                   }`}>
                   {item.name}
                 </span>
