@@ -1,6 +1,6 @@
 import * as z from 'zod'
 
-// Step-1 Create schema of the type
+// Step-1: Create Schema of the type - Run-Time Schema to check the incoming data
 
 export const GitHubUserSchema = z.object({
   login: z.string(),
@@ -38,4 +38,5 @@ export const GitHubUserSchema = z.object({
   updated_at: z.string()
 })
 
+// Step-2: Compile Time Schema
 export type GitHubUserType = z.infer<typeof GitHubUserSchema>
