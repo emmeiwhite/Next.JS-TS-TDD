@@ -1,7 +1,7 @@
 'use client'
 
 // import PlaygroundHooks from '@/components/Playground/PlaygroundHooks'
-import PlaygroundHooks2 from '@/components/Playground/PlaygroundHooks2'
+import PlaygroundHooks2 from '@/components/Playground/PlaygroundHooks3'
 
 export default function Playground() {
   return (
