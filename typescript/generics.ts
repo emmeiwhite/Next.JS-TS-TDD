@@ -43,3 +43,18 @@ arrayFirst([true, true, false])
 arrayFirst<number>([2, 4, 6])
 
 // Think of passing types as parameters --- Until you get a hold of it, pass type in <> while calling the function. For example: arrayFirst<number>([2,4,6])
+
+// ✅ 4. Generics with Objects
+
+function getObjValue<T>(obj: T, key: keyof T) {
+  return obj[key]
+}
+
+type User = {
+  name: string
+  age: number
+}
+const user: User = { name: 'Imran', age: 30 }
+
+console.log(getObjValue<User>(user, 'age'))
+console.log(getObjValue(user, 'name'))
