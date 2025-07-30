@@ -36,7 +36,7 @@ const TaskItem = React.memo(function TaskItem({ item, handleCheckedToggle }: Lis
 })
 
 export default React.memo(function ListItemsParent({ test }: { test: string }) {
-  //   console.log(test)
+  console.log(test)
   const [items, setItems] = useState<Item[]>([
     { id: '1', name: 'Pray Fajr', completed: false },
     { id: '2', name: 'Read Quran', completed: false },

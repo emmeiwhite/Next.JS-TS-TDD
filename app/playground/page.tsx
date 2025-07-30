@@ -1,6 +1,6 @@
 'use client'
 
-import PlaygroundHooks from '@/components/Playground/PlaygroundHooks'
+// import PlaygroundHooks from '@/components/Playground/PlaygroundHooks'
 import PlaygroundHooks2 from '@/components/Playground/PlaygroundHooks2'
 
 export default function Playground() {
@@ -8,7 +8,7 @@ export default function Playground() {
     <div className="py-6">
       <div className="max-w-5xl mx-auto px-5 sm:px-6">
         {/* Hooks */}
-        <PlaygroundHooks />
+        {/* <PlaygroundHooks /> */}
 
         <PlaygroundHooks2 />
       </div>
