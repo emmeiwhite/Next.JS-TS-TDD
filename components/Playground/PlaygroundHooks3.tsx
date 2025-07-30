@@ -3,6 +3,8 @@
 import PlaygroundHeading from './PlaygroundHeading'
 import useToggle from './useToggle'
 
+const url = 'https://api.github.com/users/emmeiwhite'
+
 export default function PlaygroundHooks3() {
   const { show, toggle } = useToggle(true)
 
@@ -23,6 +25,8 @@ export default function PlaygroundHooks3() {
       ) : (
         ''
       )}
+
+      <PlaygroundHeading title="Custom Fetch Hook" />
     </div>
   )
 }
