@@ -48,7 +48,7 @@ export default function PlaygroundHooks3() {
             src={user?.avatar_url}
             alt={user?.login}
             className="rounded-full"
-            height={200}
+            height={300}
             width={300}
             // quality={75} by default
           />
@@ -61,7 +61,7 @@ export default function PlaygroundHooks3() {
           </a>
         </div>
       ) : (
-        <p>Could not fetch the User</p>
+        <p></p>
       )}
     </div>
   )
