@@ -50,6 +50,7 @@ export default function PlaygroundHooks3() {
             className="rounded-full"
             height={200}
             width={300}
+            // quality={75} by default
           />
           <p>{user?.bio}</p>
           <a
