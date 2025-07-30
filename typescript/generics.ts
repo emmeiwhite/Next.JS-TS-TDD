@@ -58,3 +58,11 @@ const user: User = { name: 'Imran', age: 30 }
 
 console.log(getObjValue<User>(user, 'age'))
 console.log(getObjValue(user, 'name'))
+
+// ✅ 5. Generics in Reusable Functions
+function wrapInArray<T>(value: T): T[] {
+  return [value]
+}
+
+console.log(wrapInArray<number>(34))
+console.log(wrapInArray<string>('Keep moving forward Imran!'))
