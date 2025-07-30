@@ -1,25 +1,22 @@
 'use client'
 
-import { useState } from 'react'
 import PlaygroundHeading from './PlaygroundHeading'
+import useToggle from './useToggle'
 
 export default function PlaygroundHooks3() {
-  const [isToggle, setIsToggle] = useState<boolean>(true)
+  const { show, toggle } = useToggle(true)
 
-  function handleToggle() {
-    setIsToggle(prev => !prev)
-  }
   return (
     <div className="mt-7">
       <PlaygroundHeading title="Custom Toggle Hook" />
 
       <button
-        onClick={handleToggle}
+        onClick={toggle}
         className="border border-gray-500 px-3 py-1 rounded block">
         Toggle JSX Div
       </button>
 
-      {isToggle ? (
+      {show ? (
         <div className="mt-3 bg-green-800 inline-block px-4 py-1 text-white">
           Live and let live! Never Give up!
         </div>
