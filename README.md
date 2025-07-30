@@ -107,3 +107,76 @@ export default function useFetch(url: string) {
   return { user, loading, error }
 }
 ```
+
+### 🧠 What Are Generics (In Plain Words)?
+
+A `Generic is like a placeholder for a type` — you don’t know yet what the type will be, so you leave it flexible.
+
+Just like a `function parameter` lets you pass in values, `a generic lets you pass in types.`
+
+### ✅ 1. Without Generics — Fixed Types
+
+```ts
+function echoString(value: string): string {
+  return value
+}
+
+echoString('hello') // works
+echoString(123) // ❌ error
+```
+
+Only works with `string`.
+
+### ✅ 2. With Generics — Flexible Type!
+
+```ts
+function echo<T>(value: T): T {
+  return value
+}
+
+echo<string>('hello') // T will be string
+echo(123) // inferred as number
+echo(true) // inferred as boolean
+```
+
+Here, T is a type variable — it will be whatever type the caller passes in.
+
+### ✅ 3. Generics in Type Aliases
+
+```ts
+type ApiResponse<T> = {
+  data: T
+  error: string | null
+}
+
+const userResponse: ApiResponse<{ name: string }> = {
+  data: { name: 'Imran' },
+  error: null
+}
+
+const todosResponse: ApiResponse<string[]> = {
+  data: ['Buy Milk', 'Pray Fajr'],
+  error: null
+}
+```
+
+You create generic types like `ApiResponse<T>` that can be reused across your app.
+
+### 🧩 Bonus Tip: You Can Also Pass Generics Explicitly
+
+```ts
+echo<string>('Hello') // T is string
+echo<number>(42) // T is number
+```
+
+## 🔁 Summary
+
+| Concept                | Code                                             |          |
+| ---------------------- | ------------------------------------------------ | -------- |
+| Basic Generic Function | `function echo<T>(val: T): T`                    |          |
+| Array                  | `function first<T>(arr: T[]): T`                 |          |
+| Object                 | `function getKey<T>(obj: T, key: keyof T)`       |          |
+| Generic Type           | \`type ApiResponse<T> = { data: T; error: string | null }\` |
+| Custom Hook            | `useFetch<T>(url: string): { data: T }`          |          |
+
+`Note:` Generic takes some time to digest, So take time
