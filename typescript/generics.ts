@@ -66,3 +66,22 @@ function wrapInArray<T>(value: T): T[] {
 
 console.log(wrapInArray<number>(34))
 console.log(wrapInArray<string>('Keep moving forward Imran!'))
+
+// ✅ 6. Generics in Type Aliases
+type ApiResponse<T> = {
+  data: T
+  error: string | null
+}
+
+const userResponse: ApiResponse<{ name: string }> = {
+  data: { name: 'Imran' },
+  error: null
+}
+
+const todosResponse: ApiResponse<{ id: number; todo: string }[]> = {
+  data: [{ id: 1, todo: 'learn coding' }],
+  error: null
+}
+
+console.log(userResponse)
+console.log(todosResponse)
