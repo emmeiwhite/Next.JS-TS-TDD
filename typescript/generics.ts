@@ -83,5 +83,23 @@ const todosResponse: ApiResponse<{ id: number; todo: string }[]> = {
   error: null
 }
 
+// You create generic types like ApiResponse<T> that can be reused across your app.
 console.log(userResponse)
 console.log(todosResponse)
+
+// ✅ 7. Generics in Custom Hooks (like useFetch)
+function useFetch<T>(url: string): { data: T | null } {
+  // fetch logic...
+  return { data: null }
+}
+
+function FetchCustomData() {
+  const { data } = useFetch<number[]>('/api/numbers') // ✅ T = number[]
+}
+
+// You now control what T will be by calling:
+/*
+useFetch<User>()
+useFetch<TodoItem[]>()
+
+*/
