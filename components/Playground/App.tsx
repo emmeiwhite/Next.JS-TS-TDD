@@ -2,15 +2,21 @@
 
 import { people } from '@/data/data'
 import AppList from './AppList'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useReducer } from 'react'
 
 type User = {
   id: number
   name: string
 }
 
+const initialState = {
+  users: people
+}
+function reducer(state, action) {}
+
 export default function App() {
-  const [users, setUsers] = useState<typeof people>([])
+  const [state, dispatch] = useReducer(reducer, initialState)
+  // const [users, setUsers] = useState<typeof people>([])
 
   const getAllUsers = useCallback(function getAllUsers() {
     const storedUsers = localStorage.getItem('users')
@@ -23,10 +29,10 @@ export default function App() {
       console.log(parsed)
       if (parsed.length !== 0) {
         console.log('From Local Storage')
-        setUsers(parsed)
+        // setUsers(parsed)
       } else {
         console.log('First time or after all items are deleted!')
-        setUsers(people)
+        // setUsers(people)
       }
     }
   }, [])
@@ -38,24 +44,24 @@ export default function App() {
 
   // Sync any user changes to localStorage
   useEffect(() => {
-    localStorage.setItem('users', JSON.stringify(users))
-  }, [users])
+    localStorage.setItem('users', JSON.stringify(state.users))
+  }, [state.users])
 
   const deleteUser = useCallback(
     function deleteUser(id: number) {
-      const updatedUsers = users.filter((user: User) => user.id !== id)
-      setUsers(updatedUsers)
+      const updatedUsers = state.users.filter((user: User) => user.id !== id)
+      // setUsers(updatedUsers)
     },
-    [users]
+    [state.users]
   )
 
   function deleteAll() {
-    setUsers([])
+    // setUsers([])
   }
 
   return (
     <div className="p-6 max-w-md mx-auto">
-      {users.length === 0 ? (
+      {state.users.length === 0 ? (
         <button
           className="border border-md border-gray-500 rounded px-3 py-1"
           onClick={() => getAllUsers()}>
@@ -64,7 +70,7 @@ export default function App() {
       ) : (
         <>
           <AppList
-            users={users}
+            users={state.users}
             deleteUser={deleteUser}
           />
 

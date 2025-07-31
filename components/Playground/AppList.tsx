@@ -1,3 +1,4 @@
+import { memo } from 'react'
 type User = {
   id: number
   name: string
@@ -8,7 +9,7 @@ type UsersType = {
   deleteUser: (id: number) => void
 }
 
-export default function AppList({ users, deleteUser }: UsersType) {
+function AppList({ users, deleteUser }: UsersType) {
   return (
     <ul className="space-y-3">
       {users.map(user => (
@@ -26,3 +27,5 @@ export default function AppList({ users, deleteUser }: UsersType) {
     </ul>
   )
 }
+
+export default memo(AppList)
