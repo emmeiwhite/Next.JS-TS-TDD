@@ -2,7 +2,7 @@
 
 import { people } from '@/data/data'
 import AppList from './AppList'
-import { useCallback, useEffect, useState, useReducer } from 'react'
+import { useCallback, useEffect, useReducer } from 'react'
 
 type User = {
   id: number
@@ -14,7 +14,8 @@ type stateType = {
   isLoading: boolean
   isError: string
 }
-type actionType = { type: string; items?: typeof people }
+
+type actionType = { type: string; id?: number; users?: typeof people }
 
 // type reducerType = (state:stateType,action:actionType)=>
 
@@ -28,15 +29,23 @@ const initialState = {
 // Actions
 const clear_all = 'clear_all'
 const reset = 'reset'
-const set_items = 'set_items'
+const set_users = 'set_users'
+const delete_user = 'delete_user'
+
 // reducer may seem as if we are reducing something, Please do not be misled by naming. Reducer function is a pure function which actually returns an updated form of our state everytime user performs an action. And React team has also named that thing within React as action object with a type.
+
 function reducer(state: stateType, action: actionType) {
   if (action.type === clear_all) {
     return { ...state, users: [] }
   }
 
   if (action.type === reset) {
-    return { ...state, users: action.items }
+    return { ...state, users: action.users }
+  }
+
+  if (action.type === delete_user) {
+    const updatedState = state.users.filter(user => user.id !== action.id)
+    return { ...state, users: updatedState }
   }
 
   return state
@@ -58,12 +67,12 @@ export default function App() {
       if (parsed.length !== 0) {
         console.log('From Local Storage')
         // setUsers(parsed)
-        dispatch({ type: set_items, items: parsed })
+        dispatch({ type: set_users, users: parsed })
       } else {
-        console.log('First time or after all items are deleted!')
+        console.log('First time or after all users are deleted!')
         console.log(parsed)
         // setUsers(people)
-        dispatch({ type: reset, items: people })
+        dispatch({ type: reset, users: people })
       }
     }
   }, [])
@@ -71,7 +80,7 @@ export default function App() {
   // Load from localStorage only after the component has mounted (avoids hydration error)
   useEffect(() => {
     // getAllUsers()
-    dispatch({ type: reset, items: people })
+    dispatch({ type: reset, users: people })
   }, [getAllUsers])
 
   // Sync any user changes to localStorage
@@ -81,8 +90,9 @@ export default function App() {
 
   const deleteUser = useCallback(
     function deleteUser(id: number) {
-      const updatedUsers = state.users.filter((user: User) => user.id !== id)
       // setUsers(updatedUsers)
+
+      dispatch({ type: delete_user, id })
     },
     [state.users]
   )

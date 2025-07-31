@@ -1,4 +1,6 @@
 import { memo } from 'react'
+import { delete_item } from './App'
+
 type User = {
   id: number
   name: string
@@ -19,7 +21,9 @@ function AppList({ users, deleteUser }: UsersType) {
           <span className="text-gray-800 font-medium">{user.name}</span>
           <button
             className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-            onClick={() => deleteUser(user.id)}>
+            onClick={() => {
+              deleteUser(user.id)
+            }}>
             Delete
           </button>
         </li>
