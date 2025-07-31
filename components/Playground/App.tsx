@@ -4,6 +4,11 @@ import { people } from '@/data/data'
 import AppList from './AppList'
 import { useEffect, useState } from 'react'
 
+type User = {
+  id: number
+  name: string
+}
+
 export default function App() {
   const [users, setUsers] = useState(() => {
     // On first render (client-side only), check localStorage
@@ -22,7 +27,7 @@ export default function App() {
   }, [users])
 
   function deleteUser(id: number) {
-    const updatedUsers = users.filter(user => user.id !== id)
+    const updatedUsers = users.filter((user: User) => user.id !== id)
     setUsers(updatedUsers)
   }
 
