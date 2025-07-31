@@ -10,9 +10,17 @@ type User = {
 }
 
 const initialState = {
-  users: people
+  users: people,
+  isLoading: false,
+  isError: ''
 }
-function reducer(state, action) {}
+
+// reducer may seem as if we are reducing something, Please do not be misled by naming. Reducer function is a pure function which actually returns an updated form of our state everytime user performs an action. And React team has also named that thing within React as action object with a type.
+function reducer(state, action) {
+  if (action.type === 'clear_all') {
+    return { ...state, users: [] }
+  }
+}
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -57,6 +65,7 @@ export default function App() {
 
   function deleteAll() {
     // setUsers([])
+    dispatch({ type: 'clear_all' })
   }
 
   return (
