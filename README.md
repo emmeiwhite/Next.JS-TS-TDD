@@ -180,3 +180,11 @@ echo<number>(42) // T is number
 | Custom Hook            | `useFetch<T>(url: string): { data: T }`          |          |
 
 `Note:` Generic takes some time to digest, So take time
+
+## Hydration Error:
+
+`Hydration Mismatch` is very common in Next.js with `localStorage`, because `localStorage` is a browser-only API, and Next.js tries to render your component on the server first.
+
+✅ Quick Fix: Delay hydration until after client load
+
+You must make sure `localStorage` is only used on the client, after hydration. Here's how to do that safely.
